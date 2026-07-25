@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/Randonnees.dc.html", "destination": "/randonnees", "permanent": true },
+    { "source": "/randonnees.dc.html", "destination": "/randonnees", "permanent": true },
+    { "source": "/randonnees.dc", "destination": "/randonnees", "permanent": true },
+    { "source": "/Contact.dc.html", "destination": "/contact", "permanent": true },
+    { "source": "/contact.dc.html", "destination": "/contact", "permanent": true },
+    { "source": "/contact.dc", "destination": "/contact", "permanent": true }
+  ]
+}

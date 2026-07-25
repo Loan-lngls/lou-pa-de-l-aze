@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide de Randonnée avec un Âne — Lou Pa De L'Aze</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #2A4A27;
+      --green-mid:   #4A7C59;
+      --green-light: #9AC888;
+      --green-pale:  #F0F5EC;
+      --beige:       #F5F0E8;
+      --beige-mid:   #E8D9C0;
+      --brown:       #5C3317;
+      --gold:        #B8976E;
+      --white:       #FFFFFF;
+      --text-dark:   #1C2B1A;
+      --text-mid:    #4A5A47;
+      --text-light:  #7A8C77;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(20, 40, 18, 0.15) 0%,
+        rgba(20, 40, 18, 0.05) 40%,
+        rgba(20, 40, 18, 0.75) 100%
+      );
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 56px 80px;
+      color: white;
+    }
+
+    .hero-logo {
+      width: 110px;
+      border-radius: 8px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 10px;
+    }
+
+    .hero-content .eyebrow { color: rgba(255,255,255,0.7); }
+
+    .hero-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 5.5vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: #D4B896;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 1px;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      height: 5px;
+      background: linear-gradient(to right, var(--green-dark), var(--gold), var(--green-mid));
+    }
+
+    /* ─── SECTION BASE ─── */
+    .section { padding: 88px 80px; }
+    .section-beige  { background: var(--beige); }
+    .section-gpale  { background: var(--green-pale); }
+    .section-dark   { background: var(--green-dark); }
+    .section-brown  { background: var(--brown); }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 3.2vw, 46px);
+      font-weight: 400;
+      color: var(--green-dark);
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+
+    h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 14px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--text-mid);
+      margin-bottom: 16px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    /* ─── GRID ─── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .two-col-start { align-items: start; }
+
+    /* ─── PHOTO FRAME ─── */
+    .photo-frame {
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+    }
+
+    .photo-frame-tall img { height: 520px; }
+
+    /* ─── INTRO ─── */
+    .intro-dark h2 { color: white; }
+    .intro-dark p  { color: rgba(255,255,255,0.82); }
+    .intro-dark .eyebrow { color: var(--green-light); }
+
+    /* ─── CHECKLIST ─── */
+    .check-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 48px;
+      margin-top: 6px;
+    }
+
+    .check-grid li {
+      list-style: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    .check-grid li::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 2px solid var(--green-mid);
+      border-radius: 3px;
+      margin-top: 2px;
+    }
+
+    .check-note {
+      font-size: 13px;
+      color: var(--text-light);
+      font-style: italic;
+      margin-top: 20px;
+    }
+
+    /* ─── STEPS ─── */
+    .steps { display: flex; flex-direction: column; gap: 20px; }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      background: var(--green-mid);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .step-num-sm {
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      font-size: 13px;
+    }
+
+    .step-body h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 3px;
+    }
+
+    .step-body p { font-size: 14.5px; margin: 0; }
+
+    /* ─── SAFETY ─── */
+    .safety-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .safety-item {
+      background: rgba(255,255,255,0.1);
+      border-left: 3px solid var(--gold);
+      padding: 14px 18px;
+      border-radius: 0 5px 5px 0;
+      font-size: 14.5px;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+    }
+
+    .safety-section h2 { color: white; }
+    .safety-section .eyebrow { color: var(--gold); }
+
+    .emergency {
+      text-align: center;
+      margin-top: 36px;
+      padding: 16px 24px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 6px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.3px;
+    }
+
+    .emergency strong { color: white; }
+
+    /* ─── QUOTE ─── */
+    .quote-band {
+      background: var(--beige-mid);
+      padding: 64px 120px;
+      text-align: center;
+    }
+
+    .quote-band blockquote {
+      font-family: Georgia, serif;
+      font-size: clamp(20px, 2.4vw, 30px);
+      font-style: italic;
+      color: var(--green-dark);
+      line-height: 1.55;
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .quote-band blockquote::before,
+    .quote-band blockquote::after {
+      font-size: 72px;
+      color: var(--green-mid);
+      opacity: 0.4;
+      line-height: 0;
+      vertical-align: -0.35em;
+      font-style: normal;
+    }
+
+    .quote-band blockquote::before { content: '\201C'; margin-right: 6px; }
+    .quote-band blockquote::after  { content: '\201D'; margin-left: 6px; }
+
+    /* ─── FULL PHOTO ─── */
+    .full-photo { height: 480px; overflow: hidden; }
+    .full-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+
+    /* ─── FAQ ─── */
+    .faq-list { display: flex; flex-direction: column; gap: 20px; margin-top: 8px; }
+
+    .faq-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 26px 30px;
+      box-shadow: 0 2px 18px rgba(0,0,0,0.07);
+    }
+
+    .faq-card h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 10px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .faq-icon {
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      background: var(--green-mid);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .faq-card ol { padding-left: 18px; }
+    .faq-card ol li {
+      font-size: 14.5px;
+      color: var(--text-mid);
+      line-height: 1.65;
+      margin-bottom: 6px;
+    }
+
+    .faq-card p { font-size: 14.5px; }
+
+    /* ─── ORDERED LIST PLAIN ─── */
+    .plain-ol { padding-left: 20px; margin-top: 10px; }
+    .plain-ol li {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 7px;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--green-dark);
+      color: white;
+      padding: 64px 80px 48px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 56px;
+      margin-bottom: 48px;
+    }
+
+    .footer-logo {
+      height: 80px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .footer h3 {
+      color: white;
+      font-size: 17px;
+      margin-bottom: 14px;
+    }
+
+    .footer p {
+      color: rgba(255,255,255,0.72);
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .footer a { color: var(--green-light); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.14);
+      padding-top: 36px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .partner-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      white-space: nowrap;
+    }
+
+    .partner-logos {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+
+    .partner-logos img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .partner-logos img:hover { opacity: 1; }
+
+    /* ─── PRINT ─── */
+    @media print {
+      .hero { height: 55vh; page-break-after: always; }
+      .full-photo { height: 280px; }
+      .photo-frame img { height: 280px; }
+      .photo-frame-tall img { height: 340px; }
+      .section { padding: 48px 56px; }
+      .footer { padding: 40px 56px; }
+      .quote-band { padding: 40px 80px; }
+      .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <img
+    class="hero-img"
+    src="photos/Randonnee-famille-Taillefer-%C2%A9%20C.Ayesta%20-%20Parc%20des%20Ecrins-14.JPG"
+    alt="Randonneurs avec un âne au bord d'un lac de montagne, Parc des Écrins"
+  >
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img
+      class="hero-logo"
+      src="nouveau%20logo%20Lou%20p%C3%A0%20de%20l'aze.png"
+      alt="Logo Lou Pa De L'Aze"
+    >
+    <p class="eyebrow">Randonnées avec ânes de portage</p>
+    <h1 class="hero-title">Une invitation<br>à la <em>rando</em></h1>
+    <p class="hero-sub">Valbonnais &nbsp;·&nbsp; Écrins &nbsp;·&nbsp; Alpes</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ INTRODUCTION ═══ -->
+<section class="section section-dark intro-dark">
+  <div class="two-col">
+    <div>
+      <p class="eyebrow">Bienvenue chez Lou Pa De L'Aze</p>
+      <h2>Des montagnes, des grandes oreilles et une aventure unique</h2>
+      <p>Vous allez partir avec le meilleur compagnon de travail de l'homme — celui qui donnera un rythme et une âme à votre randonnée. À la découverte des Écrins, des lacs de montagne, face aux sommets majestueux, sur les doux sentiers avec 4 pieds sûrs.</p>
+      <p>La randonnée dans les Écrins est accessible à tous, parfaitement adaptée aux familles avec enfants. Nos topos sont très détaillés et nous vous accompagnons à chaque étape, du premier pas jusqu'au retour.</p>
+    </div>
+    <div class="photo-frame">
+      <img
+        src="photos/Randonnee-famille-Taillefer-%C2%A9%20C.Ayesta%20-%20Parc%20des%20Ecrins-7.JPG"
+        alt="Randonneurs avec deux ânes chargés dans les Écrins"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- ═══ L'INDISPENSABLE ═══ -->
+<section class="section section-beige">
+  <p class="eyebrow">Avant de partir</p>
+  <h2>L'indispensable à la rando</h2>
+  <div class="two-col two-col-start">
+    <div>
+      <h3>Pour la randonnée</h3>
+      <ul class="check-grid">
+        <li>Chaussures de marche</li>
+        <li>Casquette ou chapeau</li>
+        <li>Gourde (min. 1,5 L)</li>
+        <li>Vêtements chauds</li>
+        <li>Imperméable</li>
+        <li>Pharmacie + aspivenin</li>
+        <li>Crème solaire</li>
+        <li>Lunettes de soleil</li>
+        <li>Altimètre &amp; boussole <em style="font-size:13px">(haute montagne)</em></li>
+        <li>Pastilles désinfectantes</li>
+      </ul>
+      <p class="check-note">* Si votre randonnée traverse des villages, de l'eau potable est disponible dans chacun d'eux. En pleine montagne, prévoyez des pastilles pour les sources.</p>
+    </div>
+    <div>
+      <h3>En plus pour les bivouacs</h3>
+      <ul class="check-grid">
+        <li>Lampe de poche</li>
+        <li>Carnet &amp; stylo</li>
+        <li>Briquet &amp; couteau</li>
+        <li>Ficelle</li>
+        <li>Réchaud &amp; matériel cuisine</li>
+        <li>Tente &amp; sac de couchage</li>
+        <li>Poncho imperméable</li>
+        <li>Sacs plastiques étanches</li>
+      </ul>
+      <p class="check-note">* Tentes et sacs de couchage disponibles en prêt sur demande.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PLEINE PHOTO ÂNE ═══ -->
+<div class="full-photo">
+  <img
+    src="photos/Randonnee-famille-Taillefer-%C2%A9%20C.Ayesta%20-%20Parc%20des%20Ecrins-3.JPG"
+    alt="Gros plan d'un âne de portage dans les alpages"
+  >
+</div>
+
+<!-- ═══ L'ÂNE ═══ -->
+<section class="section">
+  <div class="two-col">
+    <div>
+      <p class="eyebrow">Votre compagnon de route</p>
+      <h2>L'âne : ni une machine, ni une bête de somme</h2>
+      <p>Vous avez fait le choix de randonner avec un âne. Ce choix vous engage vis-à-vis de l'animal. Vous veillerez à ne pas le surcharger, à ne pas le malmener, et à le respecter scrupuleusement tout au long du parcours.</p>
+      <p>Un âne porte jusqu'à <strong>45 kg</strong>. La limite est stricte et le poids des bagages est vérifié avant le départ. Si un enfant monte sur l'animal, cela est compris dans le poids total. L'âne ne porte qu'un enfant à la fois.</p>
+      <p>Rappel essentiel : randonner avec un âne, ce n'est pas de l'équitation. C'est une randonnée à pied — même pour les enfants. L'âne est votre compagnon, il fait partie du groupe.</p>
+    </div>
+    <div class="photo-frame">
+      <img
+        src="photos/Randonnee-famille-Taillefer-%C2%A9%20C.Ayesta%20-%20Parc%20des%20Ecrins-1.JPG"
+        alt="Deux enfants avec un âne dans les alpages"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CITATION ═══ -->
+<div class="quote-band">
+  <blockquote>
+    Tous les ânes ont le comportement d'un enfant futé de 5 ou 6 ans. Comme pour votre enfant, votre autorité douce mais ferme dès le départ fera de lui un compagnon coopératif.
+  </blockquote>
+</div>
+
+<!-- ═══ AU DÉPART ═══ -->
+<section class="section section-gpale">
+  <div class="two-col two-col-start">
+    <div>
+      <p class="eyebrow">Le premier matin</p>
+      <h2>Au départ</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Faire connaissance avec l'âne</h4>
+            <p>Prénom, caractère, repères essentiels sur cet animal si fabuleux. Nous vous expliquons tout ce que nous savons de lui par cœur.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Les soins journaliers</h4>
+            <p>De la tête aux pieds : brossage, vérification des sabots, soins des passages de sangle.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Le bâtage et la pesée</h4>
+            <p>Mise en place du bât, équilibrage des charges et vérification des sangles. Mémorisez bien — c'est à vous de le refaire chaque matin !</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Le road book et la sécurité</h4>
+            <p>Présentation de votre itinéraire détaillé, règles de sécurité, météo du jour, technique des nœuds.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h4>Les premiers pas</h4>
+            <p>Nous vous accompagnons sur les premières centaines de mètres pour que vous soyez à l'aise avec la conduite.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="photo-frame photo-frame-tall">
+      <img
+        src="photos/Randonnee-famille-Taillefer-%C2%A9%20C.Ayesta%20-%20Parc%20des%20Ecrins-5.JPG"
+        alt="Deux personnes en train de bâter un âne"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SÉCURITÉ ═══ -->
+<section class="section section-brown safety-section">
+  <p class="eyebrow">À respecter absolument</p>
+  <h2>Règles de sécurité</h2>
+  <div class="safety-grid">
+    <div class="safety-item">
+      Ne jamais passer derrière un âne sans le prévenir : parlez-lui, posez la main sur son dos.
+    </div>
+    <div class="safety-item">
+      Ne pas randonner juste derrière l'âne. Une mouche qui le pique et c'est le coup de sabot au visage.
+    </div>
+    <div class="safety-item">
+      Ne jamais mettre la main dans la boucle de la longe. En cas d'écart, de sérieuses blessures sont à craindre.
+    </div>
+    <div class="safety-item">
+      Si l'âne part au galop : lâchez la longe. Il n'ira pas loin. Rejoignez-le calmement — plus on court, plus il court.
+    </div>
+    <div class="safety-item">
+      Ne jamais donner de friandises à un âne. Il vous prendrait alors pour un distributeur automatique et vous mordillerait.
+    </div>
+    <div class="safety-item">
+      Soyez attentifs aux « dangers » perçus par l'âne : ruisseaux, flaques, animaux, machines à moteur qui démarrent.
+    </div>
+  </div>
+  <div class="emergency">
+    Secours montagne : <strong>112</strong>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    Secours Écrins : <strong>+33 (0)4 76 22 22 22</strong>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    Yohann (ânier) : <strong>06 09 27 05 76</strong>
+  </div>
+</section>
+
+<!-- ═══ PLEINE PHOTO PAUSE ═══ -->
+<div class="full-photo">
+  <img
+    src="photos/Randonnee-famille-Taillefer-%C2%A9%20C.Ayesta%20-%20Parc%20des%20Ecrins-17.JPG"
+    alt="Famille en pause dans les alpages avec l'âne, Parc des Écrins"
+  >
+</div>
+
+<!-- ═══ PAUSES & BÂTAGE ═══ -->
+<section class="section">
+  <div class="two-col two-col-start">
+    <div>
+      <p class="eyebrow">Le rythme de la journée</p>
+      <h2>Pendant la rando</h2>
+
+      <h3>Les pauses</h3>
+      <p>Lors des courtes pauses (repérage sur la carte, panorama), laissez l'âne brouter les herbes autour de vous.</p>
+      <p>Lors des pauses casse-croûte ou sieste, défaites le bât. Vous ne mangez pas et ne dormez pas avec votre sac sur le dos — l'âne non plus.</p>
+
+      <h3 style="margin-top: 28px;">La fin de journée</h3>
+      <ol class="plain-ol">
+        <li>S'occuper d'abord de l'âne, avant toute chose.</li>
+        <li>Débâter et brosser le dos pour décongestionner.</li>
+        <li>Vérifier les pieds, retirer les cailloux incrustés.</li>
+        <li>L'installer dans un endroit riche en herbe avec la longe de pâturage bien attachée.</li>
+        <li>S'assurer qu'il a de l'eau et changer sa place régulièrement.</li>
+      </ol>
+    </div>
+    <div>
+      <p class="eyebrow">Chaque matin</p>
+      <h3>Comment bâter l'âne</h3>
+      <div class="steps" style="margin-top: 16px;">
+        <div class="step">
+          <div class="step-num step-num-sm">①</div>
+          <div class="step-body"><p>Attacher l'âne à un point fixe : anneau, arbre solide.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-sm">②</div>
+          <div class="step-body"><p>Brosser le dos et les passages de sangle pour éliminer tout corps étranger.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-sm">③</div>
+          <div class="step-body"><p>Vérifier les pieds et enlever les cailloux avec le cure-pied.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-sm">④</div>
+          <div class="step-body"><p>Poser le tapis haut sur le garrot, le faire redescendre dans le sens du poil.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-sm">⑤</div>
+          <div class="step-body"><p>Poser le bât et sangler. On doit passer une main entre le corps et la sangle.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-sm">⑥</div>
+          <div class="step-body"><p>Sacoches équilibrées de chaque côté. Objets lourds au fond. <strong>40 kg maxi.</strong></p></div>
+        </div>
+        <div class="step">
+          <div class="step-num step-num-sm">⑦</div>
+          <div class="step-body"><p>Resserrer la sous-ventrière — l'âne s'est dégonflé entre-temps !</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUE FAIRE SI… ═══ -->
+<section class="section section-beige">
+  <p class="eyebrow">Situations courantes</p>
+  <h2>Que faire si…</h2>
+  <div class="faq-list">
+
+    <div class="faq-card">
+      <h4><span class="faq-icon">?</span>L'âne refuse d'avancer ?</h4>
+      <p>Un âne se pousse mais ne se tire jamais. S'il refuse d'avancer, il y a toujours une raison — et c'est souvent lui qui donne la solution.</p>
+      <ol style="margin-top: 10px;">
+        <li>Comprendre ce qui le bloque : pont, ruisseau, passage étroit… Attendez qu'il analyse la situation. L'âne est intelligent, il réfléchit et ne se mettra jamais en danger.</li>
+        <li>Rassurer l'âne en lui montrant que le chemin est sûr. Faire passer le groupe devant, laisser une personne avec lui.</li>
+        <li>Avant-dernier recours : agiter doucement une branche feuillue derrière ses fesses.</li>
+        <li>Dernier recours : porter l'âne.</li>
+      </ol>
+    </div>
+
+    <div class="faq-card">
+      <h4><span class="faq-icon">?</span>L'âne avance trop vite ?</h4>
+      <p>Le conducteur ou le groupe se place devant l'âne, en écartant éventuellement les bras pour renforcer l'impression de barrage. L'âne ralentira naturellement.</p>
+    </div>
+
+    <div class="faq-card">
+      <h4><span class="faq-icon">?</span>L'âne chipe des herbes et casse le rythme ?</h4>
+      <p>Soyez ferme dès le départ — l'âne va vous tester. Tirez sur la longe dès qu'il commence à tourner la tête vers les bords du chemin, en disant clairement <strong>« NON ! »</strong>. La constance durant la première heure est déterminante pour toute la journée.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PLEINE PHOTO FINALE ═══ -->
+<div class="full-photo" style="height: 540px;">
+  <img
+    src="photos/Randonnee-famille-Taillefer-%C2%A9%20C.Ayesta%20-%20Parc%20des%20Ecrins-20.JPG"
+    alt="Lac de montagne dans les Écrins avec ânes et randonneurs"
+    style="object-position: center 30%;"
+  >
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <img
+        class="footer-logo"
+        src="nouveau%20logo%20Lou%20p%C3%A0%20de%20l'aze.png"
+        alt="Logo Lou Pa De L'Aze"
+      >
+      <h3>Lou Pa De L'Aze</h3>
+      <p>Randonnées avec ânes de portage<br>dans le Parc National des Écrins</p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>
+        38 740 Valbonnais<br>
+        Écrins &nbsp;·&nbsp; Alpes<br>
+        <br>
+        <strong style="color:white;">Tél :</strong> 06 09 27 05 76<br>
+        <a href="mailto:contact@loupadelaze.com">contact@loupadelaze.com</a><br>
+        <a href="http://www.loupadelaze.com">www.loupadelaze.com</a>
+      </p>
+    </div>
+  </div>
+
+</footer>
+
+</body>
+</html>
