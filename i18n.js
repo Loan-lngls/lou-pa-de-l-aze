@@ -251,7 +251,29 @@
     ["Ils nous soutiennent", "They support us", "Sie unterstützen uns"],
     ["Guide pratique avant de venir", "Practical guide before you come", "Praktischer Leitfaden vor Ihrem Besuch"],
     ["Tout savoir sur la rando avec un âne · à consulter", "Everything about hiking with a donkey · take a look", "Alles über das Wandern mit einem Esel · zum Nachlesen"],
-    ["Nos partenaires", "Our partners", "Unsere Partner"]
+    ["Nos partenaires", "Our partners", "Unsere Partner"],
+    // ---- Pages légales ----
+    // Le corps juridique (mentions légales / politique de confidentialité) n'est volontairement
+    // pas traduit ici : seule la version française fait foi (cf. mention affichée sur ces pages).
+    ["Informations légales", "Legal information", "Rechtliche Hinweise"],
+    ["Mentions légales", "Legal notice", "Impressum"],
+    ["Politique de confidentialité", "Privacy policy", "Datenschutzerklärung"],
+    ["Vie privée & données", "Privacy & data", "Datenschutz & Daten"],
+    ["Cette page fait foi uniquement dans sa version française.",
+      "This page is only legally valid in its French version.",
+      "Diese Seite ist nur in der französischen Fassung rechtsverbindlich."],
+    ["Les informations recueillies via ce formulaire sont utilisées uniquement pour traiter votre demande de contact ou de réservation. Elles ne sont transmises à aucun tiers. Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données en nous écrivant à",
+      "The information collected via this form is used only to process your contact or booking request. It is not shared with any third party. In accordance with the GDPR, you may request access to, rectification or deletion of your data by writing to us at",
+      "Die über dieses Formular erhobenen Informationen werden ausschließlich zur Bearbeitung Ihrer Kontakt- oder Buchungsanfrage verwendet. Sie werden an keine Dritten weitergegeben. Gemäß der DSGVO können Sie Zugang, Berichtigung oder Löschung Ihrer Daten beantragen, indem Sie uns schreiben an"],
+    [". En savoir plus :", ". Learn more:", ". Mehr erfahren:"],
+    // ---- Bandeau cookies (cookie-consent.js) ----
+    ["Ce site utilise des cookies de mesure d'audience (Google Analytics) pour comprendre sa fréquentation. Vous pouvez accepter ou refuser leur dépôt à tout moment.",
+      "This site uses audience-measurement cookies (Google Analytics) to understand how it's used. You can accept or decline them at any time.",
+      "Diese Website verwendet Cookies zur Reichweitenmessung (Google Analytics), um die Nutzung zu verstehen. Sie können deren Verwendung jederzeit zustimmen oder ablehnen."],
+    ["En savoir plus", "Learn more", "Mehr erfahren"],
+    ["Refuser", "Decline", "Ablehnen"],
+    ["Accepter", "Accept", "Akzeptieren"],
+    ["Gérer les cookies", "Manage cookies", "Cookies verwalten"]
   ];
 
   var DICT = {};
